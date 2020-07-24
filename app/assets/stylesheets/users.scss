@@ -1,0 +1,14 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.editsub {
+  padding-left: 5vw !important;
+  padding-right: 60vw !important;
+}
+@media (max-width: 991.98px) {
+  .setupsub {
+    padding-left: 7vw !important;
+    padding-right: 7vw !important;
+    background-position-x: center;
+  }
+}

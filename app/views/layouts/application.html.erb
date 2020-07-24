@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fit</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <%= javascript_pack_tag 'Index' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <meta name="google-signin-client_id" content="1096259566623-dtioheo7olmqmbsqrv33g00a92vr4980.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+  
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+  <a id="navlogo" class="navbar-brand" href="#">FitStudio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="d-lg-none navbar-nav">
+  <li class="nav-item">
+  <a class="nav-link" href="<%=login_path%>"> <i class="fas fa-user"></i> Login/Signup</a>
+</li>
+</ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Yoga <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Mind</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="#">Nutrition</a>
+    </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Workouts
+        </a>
+        <div class="dropdown-menu dropdown-menuq" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Home Workout</a>
+          
+          <a class="dropdown-item" href="#">Gym Workout</a>
+        
+          <a class="dropdown-item" href="#">Cardio</a>
+        
+          <a class="dropdown-item" href="#">Dance</a>
+          <a class="dropdown-item" href="#">Zumba</a>
+        </div>
+  </li>
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0" id="searchform">
+      <input class="form-control mr-sm-2" id="searchbar" type="search" placeholder="Search Your Workout" aria-label="Search">
+      <button id="navheadbtn" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <ul class="d-none d-lg-block navbar-nav">
+      <li class="nav-item" id="space">
+      
+    </li>
+    <li class="nav-item" id="space2">
+      
+    </li>
+    </ul>
+  </div>
+</nav>
+
+  <%= yield %>
+<script>
+$('#searchform').submit(function(event){
+event.preventDefault();
+window.location="http://localhost:3000/search/index/"+$('#searchbar')[0].value;
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"> </script>
+  <script>
+  var email=sessionStorage.getItem('email');
+    if(email){
+      $('#space').append("<div class='dropdown show'><a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <i class='fas fa-user'></i>"+" "+ email.substring(1,email.length-1)+"</a><div class='dropdown-menu dropdown-menuq' aria-labelledby='dropdownMenuLink'><a class='dropdown-item' href='<%=info_path%>'>Profile</a><a class='dropdown-item' id='signout' href='#'>Sign Out</a><a class='dropdown-item' href='#'>Something else here</a></div></div>");
+    
+    }
+  else{
+    $('#space').append(" <a class='nav-link' href='<%=login_path%>'> <i class='fas fa-user'></i> Login / Signup</a>");
+  }
+  $('#signout').click(function(){
+    if(sessionStorage.getItem('oath')=="f"){
+      FB.logout(function(response) {
+   
+});
+
+    }
+  else{
+  
+
+ 
+  }
+  sessionStorage.removeItem('id');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('oath');
+    sessionStorage.removeItem('fName');
+    sessionStorage.removeItem('lName');
+    window.location="http://localhost:3000/";
+  });
+  
+  </script>
+  <script>
+  jQuery( document ).ready(function( $ ) {
+  
+     //Use this inside your document ready jQuery 
+     $(window).on('popstate', function() {
+        location.reload(true);
+     });
+  
+  });
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+ <script>
+ window.fbAsyncInit = function() {
+  FB.init({
+    appId            : '2617368228516221',
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v7.0'
+  });}
+ </script>
+
+
+  </body>
+</html>

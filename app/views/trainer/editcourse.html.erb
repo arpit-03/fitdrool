@@ -1,0 +1,74 @@
+<div>
+<h5>Update Course</h5>
+<form id="courseupdate">
+<div class="form-group">
+
+<input type="text" name="title" placeholder="Title" class="form-control" aria-describedby="titleHelp" required>
+</div>
+<div class="form-group">
+
+<textarea name="desc" id="desc" placeholder="Description" class="form-control" aria-describedby="descHelp" required>
+</textarea>
+</div>
+
+
+<button id="vidcreate" type="submit" class="btn btnlogin">Update</button>
+</form>
+</div>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    type: 'get',
+    url: 'http://localhost:8081/course/getCourseByUin/<%=params[:id]%>',
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  'headerKey': '98f88a00-152a-4627-8157-3814c754c035',
+    },
+    
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+      
+      $('input[name=title]').val(e.name);
+
+$('#desc')[0].value=e.description;
+    }
+}).done( reload('courseupdate'));});
+</script>
+<script>
+$('#courseupdate').submit(function(event){
+    event.preventDefault();
+edata={
+  'uin': '<%=params[:id]%>',
+    'name': $('input[name=title]').val(),
+    'description': $('#desc')[0].value,
+    'fees':0,
+};
+
+$.ajax({
+    type: 'post',
+    url: 'http://localhost:8081/course/updateCourseByUin',
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+ 
+    },
+    data: JSON.stringify(edata),
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+    
+window.location="http://localhost:3000/trainer/main";
+    }
+});
+});
+</script>
+<script>
+function reload(g){
+    var container = document.getElementById(g);
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    console.log("Refreshed"); 
+}
+</script>

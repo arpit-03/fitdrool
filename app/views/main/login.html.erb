@@ -1,0 +1,172 @@
+
+<div class="loginmain" style="background-image: url(<%=asset_path('b1.jpg')%>)">
+<div class="loginsub">
+<form id="login">
+<div class="form-group">
+
+<input type="email" name="email" placeholder="Email Id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="password" name="password" placeholder="Password" class="form-control" id="exampleInputPassword1" required>
+</div>
+
+<button type="submit" class="btn btnlogin">Login</button>
+</form>
+<p id="olu">Or Login Using</p>
+<div id="fbg">
+
+<div>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+</div>
+<div class="fblogin"><img src="<%=asset_path('facebook.png')%>"><p>Sign in</p> </div>
+</div>
+<p id="sun">Dont have an account <a href="<%=sign_up_path%>">Sign Up Now</a></p> 
+</div>
+</div>
+<script>
+$('#login').submit(function(event){
+event.preventDefault();
+kdata={
+    'id' : $('input[name=email]').val(),
+    'password': $('input[name=password]').val(),
+}
+$.ajax({
+  type: 'post',
+  url: 'http://localhost:8081/user/loginUser',
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+
+  },
+  data: JSON.stringify(kdata),
+  datatype:'application/json',
+  success: function(e){
+    
+   sessionrailstore(e.uin);
+  },
+});
+});
+</script>
+<script>
+function sessionrailstore(e){
+$.ajax({
+  type: 'post',
+  url: 'http://localhost:3000/ap1/v1/session/login/'+e,
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+
+  },
+  data: JSON.stringify(kdata),
+  datatype:'application/json',
+  success: function(e){
+  
+  },
+});
+}
+</script>
+<script>
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('a');
+ var edata={
+    'id': profile.getEmail(),
+    'oath': 'g',
+  };
+  signOut();
+  $.ajax({
+    type: 'post',
+    url: 'http://localhost:8081/user/checkIfFbOrGoogle',
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  
+    },
+    data: JSON.stringify(edata),
+    datatype:'application/json',
+    success: function(e){
+      if(e.status==1)
+        {
+          sessionStorage.setItem('email',JSON.stringify(edata.id));
+          sessionStorage.setItem('id',JSON.stringify(e.uin));
+          window.location="http://localhost:3000/";
+        }
+      else if(e.status==2){
+window.alert('Email already exist with another login type');
+      }
+      else{
+        window.location="http://localhost:3000/main/oath_signup?oa=g&email="+profile.getEmail();
+      }
+    },
+  });
+  
+}
+
+
+</script>
+<script>
+
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '2617368228516221',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v7.0'
+    });}
+    
+ $('.fblogin').click(function(){
+    FB.login(function(response) {
+      
+    console.log(response);
+    FB.api(
+      response.authResponse.userID,
+  'GET',
+  {"fields":"birthday,email,hometown"},
+  function(response) {
+    var edata={
+      'id': response.email,
+      'oath': 'f',
+    };
+    $.ajax({
+      type: 'post',
+      url: 'http://localhost:8081/user/checkIfFbOrGoogle',
+      headers:{
+    'Accept': 'application/json',
+    'Content-Type':'application/json',
+    
+      },
+      data: JSON.stringify(edata),
+      datatype:'application/json',
+      success: function(e){
+        if(e.status==true)
+          {
+            sessionStorage.setItem('email',JSON.stringify(edata.id));
+            window.location="http://localhost:3000/";
+          }
+        else{
+          window.location="http://localhost:3000/main/oath_signup?oa=f&email="+response.email;
+        }
+      },
+    });
+
+
+
+  }
+);
+    }, {scope: 'public_profile,email'});
+    
+ });
+ 
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
+<script>function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+}</script>

@@ -1,0 +1,86 @@
+<div class="setupmain" style="background-image: url(<%=asset_path('a2.jpg')%>)">
+<div class="setupsub editsub">
+<div class="setupcontainer" id="userdetail">
+<h5 id="sgnuptop">Account Details</h5>
+<form>
+<div class="form-group">
+
+<input type="text" placeholder="First Name" name="firstname" class="form-control" aria-describedby="emailHelp" >
+</div>
+<div class="form-group">
+
+<input type="text" placeholder="Last Name" name="lastname" class="form-control" aria-describedby="emailHelp" >
+</div>
+<div class="form-group">
+
+<input type="email" placeholder="Email Id" name="email" class="form-control" aria-describedby="emailHelp" value="arpitdeveloper03@gmail.com" disabled>
+</div>
+<div class="form-group">
+
+<input type="password" placeholder="Password" class="form-control">
+</div>
+<div class="form-group">
+
+<input type="number" placeholder="Phone no" name="phoneno" class="form-control"  aria-describedby="emailHelp">
+</div>
+
+<div class="form-group">
+
+<input type="text" placeholder="Date of Birth" name="dob" id="dob" class="form-control"  aria-describedby="emailHelp">
+</div>
+
+<h5>Gender:</h5>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio1">Male</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio2">Female</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio3">Others</label>
+</div>
+
+<button type="submit" class="btn btnlogin">Update</button>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+$('#dob').datepicker();
+</script>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    type: 'get',
+    url: 'http://localhost:8081/user/getByUin/'+sessionStorage.getItem('id'),
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  'headerKey': '98f88a00-152a-4627-8157-3814c754c035',
+    },
+    
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+      $('input[name=firstname]').val(e.firstName);
+ $('input[name=lastname]').val(e.lastName);
+$('input[name=email]').val(e.id);
+  $('input[name=phoneno]').val(e.phoneNumber);
+
+ $('input[name=dob]').val(e.DOB);
+
+    }
+}).done( reload('userdetail'));});
+</script>
+<script>
+function reload(g){
+    var container = document.getElementById(g);
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    console.log("Refreshed"); 
+}
+</script>

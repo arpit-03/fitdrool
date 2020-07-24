@@ -1,0 +1,159 @@
+// Place all the styles related to the course controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.courseheader {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1d2329;
+  color: white;
+  padding: 40px;
+  height: 70vh;
+  align-items: center;
+  h5 {
+    font-weight: bold;
+    font-size: 25px;
+  }
+  p {
+    font-size: 14px;
+    color: #b5b5b7;
+    font-weight: bold;
+    text-align: justify;
+  }
+  .certi {
+    margin-bottom: 30px;
+  }
+  .enroll {
+    width: 135px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    border-radius: 36px;
+    background-color: #3578e5;
+  }
+  .enroll:hover {
+    box-shadow: 2px 1px 5px 2px grey;
+    background-color: #4d6180;
+    cursor: pointer;
+  }
+  .thmbnail {
+    img {
+      width: 30vw;
+      border-radius: 30px;
+    }
+  }
+}
+.coursedesc {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  .desc {
+    padding: 30px;
+    width: 60%;
+  }
+  h5 {
+    font-weight: bold;
+  }
+  p {
+    color: #4d5258;
+    font-size: 12px;
+    text-align: justify;
+  }
+}
+.abttrainer {
+  border-left-style: ridge;
+  border-left-width: 2px;
+  padding: 30px;
+  width: 40%;
+  h5 {
+    font-weight: bold;
+  }
+  img {
+    width: 200px;
+  }
+  p {
+    color: #4d5258;
+    font-size: 12px;
+  }
+  .imgtrainerdiv {
+    display: flex;
+    justify-content: center;
+  }
+}
+.structure {
+  .structurehead {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #eaecf3;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    font-weight: bold;
+    p {
+      margin: 0;
+      text-align: left !important;
+    }
+    .structureheadright {
+      display: flex;
+      justify-content: space-between;
+      width: 30%;
+    }
+  }
+  .vidplaylist {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eaecf3;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    .titleplay {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      svg {
+        font-size: 10px;
+      }
+    }
+    .vidplaylisttitle {
+      margin-left: 10px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+@media (max-width: 991.98px) {
+  .courseheader {
+    flex-direction: column-reverse;
+    img {
+      width: 350px !important;
+      margin-bottom: 10px;
+    }
+  }
+  .coursedesc {
+    flex-direction: column;
+    .desc {
+      width: 100% !important;
+    }
+    .structureheadright {
+      width: 50% !important;
+    }
+    .abttrainer {
+      width: 100% !important;
+      border-left-style: none !important;
+    }
+  }
+}
+#enrfreecontain {
+  font-weight: bold;
+  width: 150px !important;
+  text-align: center;
+}
+#enrfreecontain a {
+  color: inherit !important;
+  text-decoration: none !important;
+}

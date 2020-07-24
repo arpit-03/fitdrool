@@ -1,0 +1,217 @@
+<div class="tmain">
+<div class="traincontainer">
+<div class="setupcontainer">
+<h5 id="sgnuptop">Trainer Details</h5>
+<form id="tupdateform">
+<div class="form-group">
+
+<input type="text" name="name" placeholder="Name" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="email" name="email" placeholder="Email Id" class="form-control" aria-describedby="emailHelp" required disabled>
+</div>
+<div class="form-group">
+
+<input type="password" name="password" placeholder="Password" class="form-control" >
+</div>
+
+<div class="form-group">
+
+<input type="text" name="dob" placeholder="Date of Birth" id="dob" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<h5>Gender:</h5>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="male">
+  <label class="custom-control-label" for="customRadio1">Male</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="female" >
+  <label class="custom-control-label" for="customRadio2">Female</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="others">
+  <label class="custom-control-label" for="customRadio3">Others</label>
+</div>
+<div class="form-group">
+
+<input type="text" name="certifications" placeholder="Enter certifications seperated by comma(,)" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<textarea id="info" placeholder="Enter information about yourself" class="form-control" aria-describedby="emailHelp" required>
+</textarea>
+</div>
+<button id="tupdatebutton" type="submit" class="btn btnlogin">Update</button>
+</form>
+</div>
+</div>
+<div class="showcourse traincontainer">
+<h5>All Courses</h5>
+<div id="courselist"></div>
+</div>
+<div class="createcourse traincontainer">
+<h5>Create a new Course</h5>
+<form id="coursesubmit">
+<div class="form-group">
+
+<input type="text" name="title" placeholder="Title" class="form-control" aria-describedby="titleHelp" required>
+</div>
+<div class="form-group">
+
+<textarea name="desc" id="desc" placeholder="Description" class="form-control" aria-describedby="descHelp" required>
+</textarea>
+</div>
+<h5>Type</h5>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio9" name="customRadio1" class="custom-control-input" value="YOGA">
+  <label class="custom-control-label" for="customRadio9">Yoga</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio10" name="customRadio1" class="custom-control-input" value="NUTRITION" >
+  <label class="custom-control-label" for="customRadio10">Nutrition</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio11" name="customRadio1" class="custom-control-input" value="MIND">
+  <label class="custom-control-label" for="customRadio11">Mind</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio4" name="customRadio1" class="custom-control-input" value="HOME WORKOUT">
+  <label class="custom-control-label" for="customRadio4">Home Workout</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio5" name="customRadio1" class="custom-control-input" value="GYM WORKOUT">
+  <label class="custom-control-label" for="customRadio5">Gym Workout</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio6" name="customRadio1" class="custom-control-input" value="CARDIO">
+  <label class="custom-control-label" for="customRadio6">Cardio</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio7" name="customRadio1" class="custom-control-input" value="DANCE">
+  <label class="custom-control-label" for="customRadio7">Dance</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio8" name="customRadio1" class="custom-control-input" value="ZUMBA">
+  <label class="custom-control-label" for="customRadio8">Zumba</label>
+</div>
+<button id="vidcreate" type="submit" class="btn btnlogin">Create</button>
+</form>
+</div>
+</div>
+<script>
+$('#dob').datepicker();
+</script>
+<script>
+$('#coursesubmit').submit(function(event){
+    event.preventDefault();
+edata={
+  'trainerEmailId': 'arpit03@gmail.com',
+    'name': $('input[name=title]').val(),
+    'description': $('#desc')[0].value,
+    'category':$('input[name=customRadio1]:checked').val(),
+    'fees':0,
+};
+
+$.ajax({
+    type: 'post',
+    url: 'http://localhost:8081/course/saveCourseByUin/'+sessionStorage.getItem('tid'),
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+ 
+    },
+    data: JSON.stringify(edata),
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+    
+window.location="http://localhost:3000/trainer/cthmb/"+e.uin;
+    }
+});
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $.ajax({
+    type: 'get',
+    url: 'http://localhost:8081/trainer/getByUin/'+sessionStorage.getItem('tid'),
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  'headerKey': '98f88a00-152a-4627-8157-3814c754c035',
+    },
+    
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+      loadCourse(e.courses);
+      $('input[name=name]').val(e.name);
+
+$('input[name=email]').val(e.id);
+ 
+
+ $('input[name=dob]').val(e.dob);
+ if(e.certificatePaths!=null)
+$('input[name=certifications]').val(e.certificatePaths.toString());
+$('#info')[0].value=e.about;
+    }
+}).done( reload1('tupdateform','courselist'));});
+</script>
+<script>
+function reload(g){
+    var container = document.getElementById(g);
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    console.log("Refreshed"); 
+}
+function reload1(g,f){
+reload(g);
+reload(f);
+}
+</script>
+<script>
+$('#tupdateform').submit(function(event){
+event.preventDefault();
+edata={
+  "uin": sessionStorage.getItem('tid'),
+  "name": $('input[name=name]').val(),
+  'gender':$('input[name=customRadio]:checked').val(),
+ 'dob':$('input[name=dob]').val(),
+'certificatePaths':$('input[name=certifications]').val().split(","),
+'about':$('#info')[0].value,
+};
+if($('input[name=password]').val()!=""){
+  edata.password=$('input[name=password]').val();
+}
+$.ajax({
+  type: 'post',
+  url: 'http://localhost:8081/trainer/updateTrainer',
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+'headerKey': '98f88a00-152a-4627-8157-3814c754c035',
+  },
+  data: JSON.stringify(edata),
+  datatype:'application/json',
+  success: function(e){
+    window.alert("updated successfully");
+    window.location="./tthmb/"+sessionStorage.getItem('tid');
+  }
+
+  });
+});
+</script>
+
+<script>
+function loadCourse(e){
+  var i;
+  if(e!=null)
+for(i=0;i<e.length;i++){
+
+  $('#courselist').append('<a href="./editcourse/'+e[i].uin+'"><div class="listcard" id='+e[i].id+'><div class="listimg"><img src="'+e[i].thumbnailPath+'"></div><div class="spacecard"><h5>'+e[i].name+'</h5><i class="fas fa-edit"></i></div></div></a>')
+}
+}
+</script>

@@ -1,0 +1,114 @@
+
+<div class="setupmain" style="background-image: url(<%=asset_path('a1.jpg')%>)">
+<div class="setupsub">
+<div class="setupcontainer">
+<h5 id="sgnuptop">SIGN UP</h5>
+<form id="signupform">
+<div class="form-group">
+
+<input type="text" name="firstname" placeholder="First Name" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="text" name="lastname" placeholder="Last Name" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="email" name="email" placeholder="Email Id" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="password" name="password" placeholder="Password" class="form-control" required>
+</div>
+<div class="form-group">
+
+<input type="number" name="phoneno" placeholder="Phone no" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<div class="form-group">
+
+<input type="text" name="dob" placeholder="Date of Birth" id="dob" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<h5>Gender:</h5>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="Male" checked>
+  <label class="custom-control-label" for="customRadio1">Male</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="Female" >
+  <label class="custom-control-label" for="customRadio2">Female</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="Others">
+  <label class="custom-control-label" for="customRadio3">Others</label>
+</div>
+
+<button id="signupsubmit" type="submit" class="btn btnlogin">Submit</button>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+$('#dob').datepicker();
+</script>
+<script>
+
+$('#signupform').submit(function(event){
+var fdata={
+'firstName' : $('input[name=firstname]').val(),
+'lastName' : $('input[name=lastname]').val(),
+'id' : $('input[name=email]').val(),
+'password' : $('input[name=password]').val(),
+'phoneNumber' : $('input[name=phoneno]').val(),
+'gender':$('input[name=customRadio]:checked').val(),
+'DOB':  $('input[name=dob]').val(),
+
+};
+var kdata={'email': $('input[name=email]').val(), 
+}
+console.log(fdata.email);
+event.preventDefault();
+$.ajax({
+  type: 'POST',
+  url: 'http://localhost:8081/sendmail',
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+  },
+  data: JSON.stringify(kdata),
+  datatype:'json',
+  success: function(e){
+
+  },
+});
+$('.setupcontainer').remove();
+$('.setupsub').append("<div class='setupcontainer'><form id='otpform'><div class='form-group'><input type='number' name='otp' placeholder='Enter OTP sent on Email' class='form-control' aria-describedby='emailHelp'</div><button id='otpsubmit' type='submit' class='btn btnlogin'>Submit</button></form></div>");
+$('#otpform').submit(function(event){
+event.preventDefault();
+$.ajax({
+  type: 'POST',
+  url: 'http://localhost:8081/user/saveUser/'+ $('input[name=otp]').val(),
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+'Access-Control-Allow-Headers': 'x-requested-with',  
+},
+
+  data: JSON.stringify(fdata),
+  datatype:'json',
+  success: function(e){
+    alert(e);
+console.log("success");
+sessionStorage.setItem('email',JSON.stringify(fdata.id));
+sessionStorage.setItem('oath','n');
+sessionStorage.setItem('fname', JSON.stringify(fdata.firstName));
+sessionStorage.setItem('lname', JSON.stringify(fdata.lastName));
+window.location="http://localhost:3000/";
+  },
+});
+});
+});
+
+</script>

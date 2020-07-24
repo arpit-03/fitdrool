@@ -1,0 +1,113 @@
+<div class="setupmain" style="background-image: url(<%=asset_path('a3.jpg')%>)">
+<div class="setupsub">
+<div class="setupcontainer">
+<h5 id="sgnuptop">Some Details</h5>
+<form id="signupformoa">
+<div class="form-group">
+
+<input type="text" name="firstname" placeholder="First Name" class="form-control" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="text" name="lastname" placeholder="Last Name" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<div class="form-group">
+
+<input type="number" name="phoneno" placeholder="Phone no" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<div class="form-group">
+
+<input type="text" name="dob" placeholder="Date of Birth" id="dob" class="form-control" aria-describedby="emailHelp" required>
+</div>
+
+<h5>Gender:</h5>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="Male" checked>
+  <label class="custom-control-label" for="customRadio1">Male</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="Female">
+  <label class="custom-control-label" for="customRadio2">Female</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="Others">
+  <label class="custom-control-label" for="customRadio3">Others</label>
+</div>
+
+<button id="signupsubmit" type="submit" class="btn btnlogin">Submit</button>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+$('#dob').datepicker();
+</script>
+<script>
+function create_UUID(){
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (dt + Math.random()*16)%16 | 0;
+        dt = Math.floor(dt/16);
+        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+}
+
+$('#signupformoa').submit(function(event){
+  event.preventDefault();
+  console.log('a');
+  var oath="<%=params[:oa]%>";
+  if(oath === "f"){
+  var fdata={
+'firstName' : $('input[name=firstname]').val(),
+'lastName' : $('input[name=lastname]').val(),
+'id' : "<%=params[:email]%>",
+'fbVerified':true,
+
+'password' : create_UUID(),
+'phoneNumber' : $('input[name=phoneno]').val(),
+'gender':$('input[name=customRadio]:checked').val(),
+'DOB':  $('input[name=dob]').val(),
+  }}
+else{
+  var fdata={
+'firstName' : $('input[name=firstname]').val(),
+'lastName' : $('input[name=lastname]').val(),
+'id' : "<%=params[:email]%>",
+
+'googleVerified':true,
+'password' : create_UUID(),
+'phoneNumber' : $('input[name=phoneno]').val(),
+'gender':$('input[name=customRadio]:checked').val(),
+'DOB':  $('input[name=dob]').val(),
+  }
+}
+console.log(fdata);
+$.ajax({
+  type: 'POST',
+  url: 'http://localhost:8081/user/saveUser/googleFb',
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+  },
+  data: JSON.stringify(fdata),
+  datatype:'json',
+  success: function(e){
+    sessionStorage.setItem('email',JSON.stringify(fdata.id));
+    if (oath==="f")
+      sessionStorage.setItem('oath','f');
+    else 
+      sessionStorage.setItem('oath','g');
+      sessionStorage.setItem('fname', JSON.stringify(fdata.firstName));
+      sessionStorage.setItem('lname', JSON.stringify(fdata.lastName));
+    window.location="http://localhost:3000/";
+  },
+});
+
+});
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="1096259566623-dtioheo7olmqmbsqrv33g00a92vr4980.apps.googleusercontent.com">

@@ -1,0 +1,106 @@
+// Place all the styles related to the video controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.vid {
+  width: 100vw;
+  height: 70vh;
+  background-color: black;
+
+  border-color: white;
+}
+.videodisc {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  .desc {
+    width: 60%;
+    padding: 25px;
+    .desctitle {
+      font-weight: bold;
+      color: #1d2329;
+      margin-bottom: 20px;
+    }
+  }
+}
+.videolist {
+  width: 35%;
+  padding: 20px;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-left-color: #bebdc5;
+
+  .vidthumbcover {
+    padding: 10px;
+  }
+  .vidlistitem {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    border-bottom-width: 2px;
+    border-bottom-color: grey;
+    border-bottom-style: solid;
+  }
+  .vidthumb {
+    width: 150px;
+  }
+  .vidthumbtitle {
+    padding: 10px;
+    /* align-items: center; */
+    /* display: flex; */
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+.para {
+  font-size: 14px;
+}
+.subs {
+  font-size: 12px;
+  color: grey;
+  font-weight: bold;
+}
+.playlist {
+  font-weight: bold;
+  color: #1d2329;
+  font-size: 16px;
+  margin-left: 20px;
+}
+@media (max-width: 767.98px) {
+  .vid {
+    height: 100%;
+  }
+  .videodisc {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .desc {
+      width: 100%;
+      padding: 25px;
+    }
+    .para {
+      font-size: 12px;
+    }
+  }
+  .videolist {
+    display: flex;
+    border-left-style: none !important;
+
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.viddiscmain {
+  padding: 20px;
+  text-align: justify;
+}
+.viddiscmain h5 {
+  font-weight: bold;
+  color: #1d2329;
+  font-size: 18px;
+}
+.viddiscmain p {
+  color: #5d636d;
+  font-size: 12px;
+}

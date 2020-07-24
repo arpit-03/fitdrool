@@ -1,0 +1,38 @@
+<div class="loginmain" style="background-image: url(<%=asset_path('b3.jpg')%>)">
+<div class="loginsub">
+<form id="tlogin">
+<div class="form-group">
+
+<input type="email" name="email" placeholder="Email Id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+</div>
+<div class="form-group">
+
+<input type="password" name="password" placeholder="Password" class="form-control" id="exampleInputPassword1" required>
+</div>
+
+<button type="submit" class="btn btnlogin">Login</button>
+</form>
+<script>
+$('#tlogin').submit(function(event){
+    event.preventDefault();
+edata={
+    'id': $('input[name=email]').val(),
+    'password': $('input[name=password]').val(),
+};
+  $.ajax({
+    type: 'post',
+    url: 'http://localhost:8081/trainer/loginTrainer',
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+ 
+    },
+    data: JSON.stringify(edata),
+    datatype:'application/json',
+    success: function(e){
+      console.log(e);
+    sessionStorage.setItem('tid',JSON.stringify(e.uin));
+window.location="http://localhost:3000/trainer/main";
+    }
+});});
+</script>

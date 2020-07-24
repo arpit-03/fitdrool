@@ -1,0 +1,37 @@
+<div class="tcontainer2">
+<form id="ss_save">
+<div class="custom-file">
+  <input type="file" name="file" class="custom-file-input" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose Cover Image</label>
+</div>
+<div id="imgpreview"></div>
+<button id="vidcreate" type="submit" class="btn btnlogin">Upload</button>
+</form>
+</div>
+<script>
+$('#customFile').change(function(){
+  $('#imgpreview').html('<img class="previewimg" src="'+window.URL.createObjectURL($('#customFile')[0].files[0])+'">');
+});
+$('#ss_save').submit(function(event){
+    event.preventDefault();
+    var formData = new FormData();
+    formData.append('thumbnail',$('#customFile')[0].files[0]);
+$.ajax({
+    type: 'post',
+    url: 'http://localhost:8081/course/upload/thumbnail/<%=params[:id]%>',
+    headers:{
+ 
+ 
+    },
+    data: formData,
+    processData: false,
+contentType: false,
+    enctype:'multipart/form-data',
+    success: function(e){
+      console.log(e);
+    window.location="http://localhost:3000/trainer/videoupload/<%=params[:id]%>";
+
+    }
+});
+  });
+</script>

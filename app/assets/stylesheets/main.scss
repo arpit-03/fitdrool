@@ -1,0 +1,112 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.btnlogin {
+  background-color: #1d2329 !important;
+  color: white !important;
+  border-color: white !important;
+}
+.loginmain {
+  height: 100vh;
+  background-size: cover;
+  padding-right: 57vw;
+  padding-left: 7vw;
+  padding-top: 10vh;
+  .loginsub {
+    padding-right: 5vw;
+    padding-left: 5vw;
+    padding-top: 5vh;
+    border-style: solid;
+    border-width: 3px;
+    background-color: white;
+    padding-bottom: 5vh;
+    border-radius: 25px;
+  }
+  #olu {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+  svg {
+    margin-right: 20px;
+    font-size: 25px;
+  }
+  #fbg {
+    display: flex;
+    height: 20vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #sun {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+.setupmain {
+  height: 100vh;
+  background-size: cover;
+  .setupsub {
+    padding-left: 55vw;
+    padding-right: 10vw;
+    padding-bottom: 5vh;
+    padding-top: 2vh;
+    .setupcontainer {
+      #sgnuptop {
+        text-align: center;
+        font-weight: 800;
+        color: #1d2329;
+      }
+      padding: 30px;
+      border-width: 3px;
+      border-style: solid;
+      border-radius: 25px;
+      background-color: white;
+      h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      label {
+        margin-bottom: 5px;
+      }
+      button {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+.fblogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4267b2;
+  width: 117px;
+  box-shadow: 1px 1px 4px 1px grey;
+  padding: 10px;
+  padding-left: 2px;
+  padding-right: 16px;
+  cursor: pointer;
+  img {
+    width: 22px;
+  }
+  p {
+    color: white;
+    margin: 0;
+    font-size: 15px;
+  }
+}
+.fblogin:hover {
+  box-shadow: 2px 2px 10px 1px blue;
+}
+@media (max-width: 991.98px) {
+  .loginmain {
+    padding-left: 7vw;
+    padding-right: 7vw;
+    background-position-x: center;
+  }
+  .setupsub {
+    padding-left: 7vw !important;
+    padding-right: 7vw !important;
+    background-position-x: center;
+  }
+}
