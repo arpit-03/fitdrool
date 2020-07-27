@@ -34,9 +34,9 @@ class Course extends Component {
           isLoading: false,
         })
       );
-    this.checkenrollget();
+    this.checkenroll();
   }
-  checkenrollget() {
+  userget() {
     var uin = null;
     var k = this;
     $.ajax({
@@ -51,53 +51,91 @@ class Course extends Component {
       success: function (e) {
         if (e.status) {
           uin = e.uin;
-          k.checkenroll(uin);
         } else {
-          alert("User not Logged in");
+          uin = false;
         }
       },
     });
+    return uin;
   }
-  checkenroll(uin) {
+  checkenroll() {
+    var uin = null;
     var k = this;
-
     $.ajax({
       type: "get",
-      url:
-        "http://localhost:8081/checkIfEnrolled/" +
-        this.props.match.params.id +
-        "/" +
-        uin,
+      url: "http://localhost:3000/api/v1/session/checksession",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        headerKey: "98f88a00-152a-4627-8157-3814c754c035",
       },
 
       datatype: "application/json",
       success: function (e) {
-        if (e) {
-          k.setState({
-            btn: (
-              <Link to={"../../video/index/" + k.props.match.params.id}>
-                <div id="enrplay">Play Now</div>
-              </Link>
-            ),
-          });
+        if (e.status) {
+          uin = e.uin;
+        } else {
+          uin = false;
         }
       },
-      error: function (e) {},
+    }).done(function () {
+      console.log(uin);
+      if (uin != false) {
+        $.ajax({
+          type: "get",
+          url:
+            "http://localhost:8081/checkIfEnrolled/" +
+            k.props.match.params.id +
+            "/" +
+            uin,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            headerKey: "98f88a00-152a-4627-8157-3814c754c035",
+          },
+
+          datatype: "application/json",
+          success: function (e) {
+            if (e) {
+              k.setState({
+                btn: (
+                  <Link to={"../../video/index/" + k.props.match.params.id}>
+                    <div id="enrplay">Play Now</div>
+                  </Link>
+                ),
+              });
+            }
+          },
+          error: function (e) {},
+        });
+      }
     });
   }
 
   enroll() {
     console.log("abc");
     console.log(this.props);
-    if (sessionStorage.getItem("id") == null) {
-      window.location = "http://localhost:3000/main/login";
-    } else {
-      var edata = { uin: sessionStorage.getItem("id") };
-      var id = this.props.match.params.id;
+
+    var uin = null;
+    var k = this;
+    $.ajax({
+      type: "get",
+      url: "http://localhost:3000/api/v1/session/checksession",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      datatype: "application/json",
+      success: function (e) {
+        if (e.status) {
+          uin = e.uin;
+        } else {
+          uin = false;
+        }
+      },
+    }).done(function () {
+      var edata = { uin: uin };
+      var id = k.props.match.params.id;
       $.ajax({
         type: "post",
         url: "http://localhost:8081/joinCourse/" + id,
@@ -113,7 +151,7 @@ class Course extends Component {
           window.location = "http://localhost:3000/course/index/" + id;
         },
       });
-    }
+    });
   }
   render() {
     var listl = this.state.listl;
