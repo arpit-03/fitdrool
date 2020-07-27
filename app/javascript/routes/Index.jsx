@@ -11,6 +11,7 @@ import Videodisc from "../components/Videodisc";
 import Course from "../components/Course";
 import ScrollToTop from "../components/ScrollToTop";
 import Search from "../components/Search";
+import Usercourse from "../components/Usercourse";
 
 export default (
   <Router>
@@ -26,6 +27,7 @@ export default (
       <Route path="/course/index/:id" component={Course} />
       <Route path="/video/index/:id" exact component={Videodisc} />
       <Route path="/search/index/:query" exact component={Search} />
+      <Route path="/users/course" exact component={Usercourse} />
     </Switch>
   </Router>
 );

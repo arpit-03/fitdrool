@@ -22,6 +22,14 @@ const responsive = {
 };
 
 class Cardcarousel extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(e, e1) {
+    e1.preventDefault();
+    window.location = "../../course/index/" + e;
+  }
   render() {
     return (
       <div>
@@ -34,15 +42,15 @@ class Cardcarousel extends Component {
           centerMode={true}
         >
           {this.props.swipelist.map((list1, index) => (
-            <Link key={index} to={"../course/index/" + list1.course.uin}>
-              <div key={index}>
+            <div key={index} className="cccarousel">
+              <a onClick={(e) => this.handleClick(list1.course.uin, e)}>
                 <Card
                   key={index}
                   link={list1.course.thumbnailPath}
                   title={list1.course.name}
                 ></Card>
-              </div>
-            </Link>
+              </a>
+            </div>
           ))}
         </Carousel>
       </div>

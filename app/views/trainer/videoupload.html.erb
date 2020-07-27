@@ -45,7 +45,7 @@ $('#viduploadform').submit(function(event){
       datatype:'application/json',
       success: function(e){
         console.log(e);
-        upload(e.id);
+        upload(e.course.id);
   }
     })
     

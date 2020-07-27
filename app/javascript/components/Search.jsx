@@ -26,7 +26,7 @@ class Search extends Component {
       return (
         <div className="searchcards">
           {this.state.lists.map((list, index) => (
-            <Link key={index} to={"../course/index/" + list.course.uin}>
+            <Link key={index} to={"../../course/index/" + list.course.uin}>
               <Listcard
                 key={list.course.uin}
                 title={list.course.name}

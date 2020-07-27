@@ -82,6 +82,7 @@ $.ajax({
   success: function(e){
 
   },
+  
 });
 $('.setupcontainer').remove();
 $('.setupsub').append("<div class='setupcontainer'><form id='otpform'><div class='form-group'><input type='number' name='otp' placeholder='Enter OTP sent on Email' class='form-control' aria-describedby='emailHelp'</div><button id='otpsubmit' type='submit' class='btn btnlogin'>Submit</button></form></div>");
@@ -99,16 +100,39 @@ $.ajax({
   data: JSON.stringify(fdata),
   datatype:'json',
   success: function(e){
-    alert(e);
-console.log("success");
-sessionStorage.setItem('email',JSON.stringify(fdata.id));
-sessionStorage.setItem('oath','n');
-sessionStorage.setItem('fname', JSON.stringify(fdata.firstName));
-sessionStorage.setItem('lname', JSON.stringify(fdata.lastName));
-window.location="http://localhost:3000/";
+
+
+sessionrailstore(e.uin,fdata.id);
+  },
+  error:function(e){
+    alert(e.reason);
   },
 });
 });
 });
 
+</script>
+<script>
+function sessionrailstore(e,email){
+  var em={
+    'email':email
+  };
+$.ajax({
+  type: 'post',
+  url: 'http://localhost:3000/api/v1/session/login/'+e,
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+
+  },
+  data:JSON.stringify(em),
+  datatype:'application/json',
+  success: function(e1){
+  window.location="../..";
+  },
+  error: function(e1){
+alert("Session creation error occured");
+  },
+});
+}
 </script>

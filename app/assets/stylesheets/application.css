@@ -65,3 +65,12 @@ body {
   width: 50%;
   flex-wrap: wrap;
 }
+.social {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 26px;
+}
+.social svg {
+  margin-right: 10px;
+}

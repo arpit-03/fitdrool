@@ -9,6 +9,12 @@ class Footer extends Component {
           <a className="sections">Contact us</a>
           <a className="sections">Terms and Conditions</a>
         </div>
+        <div className="social">
+          <i className="fab fa-facebook-square"></i>
+          <i className="fab fa-twitter-square"></i>
+          <i className="fab fa-youtube"></i>
+          <i className="fab fa-instagram"></i>
+        </div>
         <div>
           <a className="navbar-brand">FitStudio</a>
         </div>

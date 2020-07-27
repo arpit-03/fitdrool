@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
     namespace :v1 do
     post 'session/login/:id', to: 'session#loginsession', as: 'loginsession'
-
+    get 'session/checksession', to: 'session#checksession', as: 'checksession'
     end
   end
   get 'trainer/index'
@@ -14,13 +14,14 @@ Rails.application.routes.draw do
   get 'main/login' , as: 'login'
   get 'main/signup', as: 'sign_up'
   root 'home#index'
-  get 'home/index'
+  post '/signout', to:"application#signout", as: "signout"
+  get 'home/index',as: 'root2'
   get 'search/index/:query',to: 'search#index', as: 'search'
   get 'trainer/videoupload/:id', to: 'trainer#videoupload', as: 'videoupload'
   get 'trainer/cthmb/:id', to: 'trainer#cthmb', as: 'ss_save'
   get 'trainer/tthmb/:id', to: 'trainer#tthmb', as: 'ts_save'
   get 'trainer/editcourse/:id', to: 'trainer#editcourse', as: 'editcourse'
-
+get 'users/course', to: 'users#course', as: 'usercourse'
   get 'trainer/main', as: 'tmain'
   get 'main/oath_signup',to:"main#oath_signup", as:'oasignup'
   get 'yoga',to:"workout#yoga", as: 'yoga'

@@ -5,10 +5,24 @@
   padding-left: 5vw !important;
   padding-right: 60vw !important;
 }
+.mycourse {
+  padding: 30px;
+  box-shadow: 2px 2px 4px 1px #a6a5b5;
+  margin: 20px;
+  h5 {
+    font-weight: bold;
+    color: #1d2329;
+  }
+}
 @media (max-width: 991.98px) {
   .setupsub {
     padding-left: 7vw !important;
     padding-right: 7vw !important;
     background-position-x: center;
   }
+}
+.mycourse a,
+.mycourse a:hover {
+  color: inherit;
+  text-decoration: none;
 }

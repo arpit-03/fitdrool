@@ -30,7 +30,7 @@ event.preventDefault();
 kdata={
     'id' : $('input[name=email]').val(),
     'password': $('input[name=password]').val(),
-}
+};
 $.ajax({
   type: 'post',
   url: 'http://localhost:8081/user/loginUser',
@@ -42,27 +42,38 @@ $.ajax({
   data: JSON.stringify(kdata),
   datatype:'application/json',
   success: function(e){
-    
-   sessionrailstore(e.uin);
+    console.log(e);
+   sessionrailstore(e.uin,kdata.id);
   },
+  error: function(e){
+    console.log(e);
+    alert("Error occured");
+      },
 });
 });
 </script>
 <script>
-function sessionrailstore(e){
+function sessionrailstore(e,email){
+  var em={
+    'email':email
+  };
 $.ajax({
   type: 'post',
-  url: 'http://localhost:3000/ap1/v1/session/login/'+e,
+  url: 'http://localhost:3000/api/v1/session/login/'+e,
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
 
   },
-  data: JSON.stringify(kdata),
+  data:JSON.stringify(em),
   datatype:'application/json',
-  success: function(e){
-  
+  success: function(e1){
+  window.location="../..";
   },
+  error: function(e){
+    console.log(e);
+    alert("Rails session creation error");
+      },
 });
 }
 </script>
@@ -89,9 +100,8 @@ function onSignIn(googleUser) {
     success: function(e){
       if(e.status==1)
         {
-          sessionStorage.setItem('email',JSON.stringify(edata.id));
-          sessionStorage.setItem('id',JSON.stringify(e.uin));
-          window.location="http://localhost:3000/";
+       
+          sessionrailstore(e.uin,edata.id);
         }
       else if(e.status==2){
 window.alert('Email already exist with another login type');
@@ -100,6 +110,10 @@ window.alert('Email already exist with another login type');
         window.location="http://localhost:3000/main/oath_signup?oa=g&email="+profile.getEmail();
       }
     },
+    error: function(e){
+      console.log(e);
+      alert("Error occured");
+        },
   });
   
 }
@@ -130,6 +144,9 @@ window.alert('Email already exist with another login type');
       'id': response.email,
       'oath': 'f',
     };
+    FB.logout(function(response) {
+   
+});
     $.ajax({
       type: 'post',
       url: 'http://localhost:8081/user/checkIfFbOrGoogle',
@@ -143,13 +160,16 @@ window.alert('Email already exist with another login type');
       success: function(e){
         if(e.status==true)
           {
-            sessionStorage.setItem('email',JSON.stringify(edata.id));
-            window.location="http://localhost:3000/";
+            sessionrailstore(e.uin,edata.id);
           }
         else{
           window.location="http://localhost:3000/main/oath_signup?oa=f&email="+response.email;
         }
       },
+      error: function(e){
+        console.log(e);
+        alert("Error occured");
+          },
     });
 
 

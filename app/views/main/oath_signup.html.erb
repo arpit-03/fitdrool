@@ -96,14 +96,12 @@ $.ajax({
   data: JSON.stringify(fdata),
   datatype:'json',
   success: function(e){
-    sessionStorage.setItem('email',JSON.stringify(fdata.id));
-    if (oath==="f")
-      sessionStorage.setItem('oath','f');
-    else 
-      sessionStorage.setItem('oath','g');
-      sessionStorage.setItem('fname', JSON.stringify(fdata.firstName));
-      sessionStorage.setItem('lname', JSON.stringify(fdata.lastName));
-    window.location="http://localhost:3000/";
+   
+    
+      sessionrailstore(e.uin,fdata.id);
+  },
+  error: function(e){
+alert("Error occured");
   },
 });
 
@@ -111,3 +109,24 @@ $.ajax({
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="1096259566623-dtioheo7olmqmbsqrv33g00a92vr4980.apps.googleusercontent.com">
+<script>
+function sessionrailstore(e,email){
+  var em={
+    'email':email
+  };
+$.ajax({
+  type: 'post',
+  url: 'http://localhost:3000/api/v1/session/login/'+e,
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+
+  },
+  data:JSON.stringify(em),
+  datatype:'application/json',
+  success: function(e1){
+  window.location="../..";
+  },
+});
+}
+</script>

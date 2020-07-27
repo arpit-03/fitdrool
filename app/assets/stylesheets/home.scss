@@ -40,7 +40,7 @@
   }
 }
 .card {
-  box-shadow: 4px 8px 11px 0px #bbbec1;
+  box-shadow: 2px 2px 5px 2px #bbbec1;
   margin: 5px;
   width: 250px;
   .cardbody {
@@ -77,4 +77,26 @@
       width: 150px !important;
     }
   }
+  .aboutcontainer {
+    flex-direction: column;
+  }
+}
+.aboutcontainer {
+  display: flex;
+  justify-content: space-between;
+  .aboutdiv {
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 2px 2px 4px 1px #bcbaca;
+    .abouthead {
+      font-weight: bold;
+      color: #1d2329;
+    }
+    .aboutpara {
+      font-size: 14px;
+    }
+  }
+}
+.cccarousel {
+  cursor: pointer;
 }

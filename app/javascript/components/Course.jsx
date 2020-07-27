@@ -34,41 +34,60 @@ class Course extends Component {
           isLoading: false,
         })
       );
-    this.checkenroll();
+    this.checkenrollget();
   }
-  checkenroll() {
+  checkenrollget() {
+    var uin = null;
     var k = this;
-    console.log(k);
-    if (sessionStorage.getItem("id") != null) {
-      console.log("b");
-      $.ajax({
-        type: "get",
-        url:
-          "http://localhost:8081/checkIfEnrolled/" +
-          this.props.match.params.id +
-          "/" +
-          sessionStorage.getItem("id"),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          headerKey: "98f88a00-152a-4627-8157-3814c754c035",
-        },
+    $.ajax({
+      type: "get",
+      url: "http://localhost:3000/api/v1/session/checksession",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
 
-        datatype: "application/json",
-        success: function (e) {
-          if (e) {
-            k.setState({
-              btn: (
-                <Link to={"../../video/index/" + k.props.match.params.id}>
-                  <div id="enrplay">Play Now</div>
-                </Link>
-              ),
-            });
-          }
-        },
-        error: function (e) {},
-      });
-    }
+      datatype: "application/json",
+      success: function (e) {
+        if (e.status) {
+          uin = e.uin;
+          k.checkenroll(uin);
+        } else {
+          alert("User not Logged in");
+        }
+      },
+    });
+  }
+  checkenroll(uin) {
+    var k = this;
+
+    $.ajax({
+      type: "get",
+      url:
+        "http://localhost:8081/checkIfEnrolled/" +
+        this.props.match.params.id +
+        "/" +
+        uin,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        headerKey: "98f88a00-152a-4627-8157-3814c754c035",
+      },
+
+      datatype: "application/json",
+      success: function (e) {
+        if (e) {
+          k.setState({
+            btn: (
+              <Link to={"../../video/index/" + k.props.match.params.id}>
+                <div id="enrplay">Play Now</div>
+              </Link>
+            ),
+          });
+        }
+      },
+      error: function (e) {},
+    });
   }
 
   enroll() {
