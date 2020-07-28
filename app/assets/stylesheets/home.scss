@@ -100,5 +100,38 @@
 .cccarousel {
   cursor: pointer;
 }
-#gymcategory {
+.categorycontainer {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.imagecategory {
+  box-shadow: 2px 2px 3px 2px #888b90;
+}
+.imagecategory img {
+  vertical-align: middle;
+  border-style: none;
+  width: 20vw;
+  height: 50vh;
+  object-fit: cover;
+}
+.imagecategory:hover {
+  opacity: 0.8;
+  box-shadow: 2px 2px 8px 2px #2a80b3;
+  cursor: pointer;
+}
+.categoryname {
+  background-color: #e1e3ec;
+  padding: 10px;
+
+  p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    font-color: black;
+    color: #1d2329;
+    font-size: 16px;
+  }
 }

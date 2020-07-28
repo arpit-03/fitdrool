@@ -5,7 +5,9 @@ import About from "./About";
 import Category from "./Category";
 class Homemain extends Component {
   state = {};
-
+  componentDidMount() {
+    ScrollReveal().reveal(".ac");
+  }
   render() {
     return (
       <div>

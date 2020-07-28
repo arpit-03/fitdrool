@@ -26,7 +26,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="ac">
         <div className="videogallery">
           <Cardcarousel title={"Recent Videos"} swipelist={this.state.lists} />
         </div>
