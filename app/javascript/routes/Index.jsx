@@ -19,11 +19,15 @@ export default (
     <Switch>
       <Route path="/" exact component={Homemain} />
       <Route path="/yoga" exact component={Yoga} />
-      <Route path="/gym" exact component={Gym} />
-      <Route path="/nutrition" exact component={Nutrition} />
-      <Route path="/dance" exact component={Dance} />
-      <Route path="/zumba" exact component={Zumba} />
-      <Route path="/cardio" exact component={Cardio} />
+
+      <Route path="/cardio" exact component={Gym} />
+      <Route path="/home workout" exact component={Gym} />
+      <Route path="/gym workout" exact component={Gym} />
+      <Route path="/zumba" exact component={Yoga} />
+      <Route path="/mind" exact component={Gym} />
+      <Route path="/nutrition" exact component={Yoga} />
+      <Route path="/dance" exact component={Yoga} />
+      <Route path="/zumba" exact component={Gym} />
       <Route path="/course/index/:id" component={Course} />
       <Route path="/video/index/:id" exact component={Videodisc} />
       <Route path="/search/index/:query" exact component={Search} />

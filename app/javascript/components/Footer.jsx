@@ -16,7 +16,7 @@ class Footer extends Component {
           <i className="fab fa-instagram"></i>
         </div>
         <div>
-          <a className="navbar-brand">FitStudio</a>
+          <a className="navbar-brand">FitDrool</a>
         </div>
       </div>
     );

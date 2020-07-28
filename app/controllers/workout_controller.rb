@@ -11,4 +11,12 @@ class WorkoutController < ApplicationController
     end
     def gym
     end
+    def zumba
+    end
+    def mind
+    end
+    def homeworkout
+    end
+    def gymworkout
+    end
 end
