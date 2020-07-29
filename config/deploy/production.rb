@@ -7,11 +7,12 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '18.224.45.42', user: 'ubuntu', roles: %w{app db web},ssh_options: {
-  keys: %w(/home/arpit/Downloads/fitdrool.pem),
-  forward_agent: false,
-  auth_methods: %w(publickey password)
-}
+server '52.14.134.130', user: 'ubuntu', roles: %w{app db web}
+set :ssh_options, {
+   keys: %w(/home/arpit/Downloads/fitdrool.pem),
+   forward_agent: false,
+ }
+
 # role-based syntax
 # ==================
 
