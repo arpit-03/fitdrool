@@ -72,7 +72,7 @@ console.log(fdata.email);
 event.preventDefault();
 $.ajax({
   type: 'POST',
-  url: 'http://localhost:8081/sendmail',
+  url: backpath+'/sendmail',
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
@@ -90,7 +90,7 @@ $('#otpform').submit(function(event){
 event.preventDefault();
 $.ajax({
   type: 'POST',
-  url: 'http://localhost:8081/user/saveUser/'+ $('input[name=otp]').val(),
+  url: backpath+'/user/saveUser/'+ $('input[name=otp]').val(),
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
@@ -119,7 +119,7 @@ function sessionrailstore(e,email){
   };
 $.ajax({
   type: 'post',
-  url: 'http://localhost:3000/api/v1/session/login/'+e,
+  url: '../../api/v1/session/login/'+e,
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',

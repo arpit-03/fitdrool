@@ -18,6 +18,7 @@
     </head>
   
   <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark">
   <a id="navlogo" class="navbar-brand" href="">FitDrool</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +83,7 @@
 <script>
 $('#searchform').submit(function(event){
 event.preventDefault();
-window.location="http://localhost:3000/search/index/"+$('#searchbar')[0].value;
+window.location="../../search/index/"+$('#searchbar')[0].value;
 });
 </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"> </script>
@@ -128,4 +129,8 @@ $('.my_course').click(function(event){
   event.preventDefault();
   window.location="../../users/course";
 });
+</script>
+<script>
+var backpath="http://localhost:8081";
+var backpath2="http://localhost:3000";
 </script>

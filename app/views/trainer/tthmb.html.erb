@@ -18,7 +18,7 @@ $('#ss_save').submit(function(event){
     formData.append('profilePic',$('#customFile')[0].files[0]);
 $.ajax({
     type: 'post',
-    url: 'http://localhost:8081/uploadTrainerProfilePicByUin/<%=params[:id]%>',
+    url: backpath+'/uploadTrainerProfilePicByUin/<%=params[:id]%>',
     headers:{
  
  
@@ -29,7 +29,7 @@ contentType: false,
     enctype:'multipart/form-data',
     success: function(e){
       console.log(e);
-    window.location="http://localhost:3000/trainer/main";
+    window.location="../../trainer/main";
 
     }
 });

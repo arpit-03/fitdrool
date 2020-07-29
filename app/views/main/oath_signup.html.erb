@@ -88,7 +88,7 @@ else{
 console.log(fdata);
 $.ajax({
   type: 'POST',
-  url: 'http://localhost:8081/user/saveUser/googleFb',
+  url: backpath+'/user/saveUser/googleFb',
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
@@ -116,7 +116,7 @@ function sessionrailstore(e,email){
   };
 $.ajax({
   type: 'post',
-  url: 'http://localhost:3000/api/v1/session/login/'+e,
+  url: '../../api/v1/session/login/'+e,
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',

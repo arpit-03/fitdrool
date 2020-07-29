@@ -35,7 +35,7 @@ $('#viduploadform').submit(function(event){
     var ems;
     $.ajax({
       type: 'get',
-      url: 'http://localhost:8081/course/getCourseByUin/<%=params[:id]%>',
+      url: backpath+'/course/getCourseByUin/<%=params[:id]%>',
       headers:{
     'Accept': 'application/json',
     'Content-Type':'application/json',
@@ -67,7 +67,7 @@ function upload(e1){
         formData.append('video1',JSON.stringify(edata));
     $.ajax({
         type: 'post',
-        url: 'http://localhost:8081/uploadFile',
+        url: backpath+'/uploadFile',
         headers:{
      
      
@@ -79,7 +79,7 @@ function upload(e1){
         enctype:'multipart/form-data',
         success: function(e){
           console.log(e);
-        window.location="http://localhost:3000/trainer/main";
+        window.location="../../trainer/main";
     
         }
     });

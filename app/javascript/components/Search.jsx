@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Listcard from "./Listcard";
+import Constants from "./Constants";
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,8 @@ class Search extends Component {
     this.setState({ isLoading: true });
 
     fetch(
-      "http://localhost:8081/course/searchCourses/" +
+      Constants.backpath +
+        "/course/searchCourses/" +
         this.props.match.params.query +
         "/200"
     )

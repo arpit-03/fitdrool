@@ -3,6 +3,7 @@ import Cardcarousel from "./Cardcarousel";
 import Listcard from "./Listcard";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import Constants from "./Constants";
 class Workout extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,8 @@ class Workout extends Component {
     this.setState({ isLoading: true });
 
     fetch(
-      "http://localhost:8081/course/searchCoursesByCategory/" +
+      Constants.backpath +
+        "/course/searchCoursesByCategory/" +
         this.props.title +
         "/200"
     )

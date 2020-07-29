@@ -18,7 +18,7 @@ $('#ss_save').submit(function(event){
     formData.append('thumbnail',$('#customFile')[0].files[0]);
 $.ajax({
     type: 'post',
-    url: 'http://localhost:8081/course/upload/thumbnail/<%=params[:id]%>',
+    url: backpath+'/course/upload/thumbnail/<%=params[:id]%>',
     headers:{
  
  
@@ -29,7 +29,7 @@ contentType: false,
     enctype:'multipart/form-data',
     success: function(e){
       console.log(e);
-    window.location="http://localhost:3000/trainer/videoupload/<%=params[:id]%>";
+    window.location="../../trainer/videoupload/<%=params[:id]%>";
 
     }
 });

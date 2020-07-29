@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cardcarousel from "./Cardcarousel";
-
+import Constants from "./Constants";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +15,11 @@ class Home extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    fetch("http://localhost:8081/course/searchCoursesByCategory/yoga/8")
+    fetch(Constants.backpath + "/course/searchCoursesByCategory/yoga/8")
       .then((response) => response.json())
       .then((data) => this.setState({ lists: data }));
     fetch(
-      "http://localhost:8081/course/searchCoursesByCategory/home%20workout/8"
+      Constants.backpath + "/course/searchCoursesByCategory/home%20workout/8"
     )
       .then((response) => response.json())
       .then((data) => this.setState({ lists2: data, isLoading: false }));

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import Constants from "./Constants";
 class Course extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ class Course extends Component {
     this.setState({ isLoading: true });
     console.log("a");
     fetch(
-      "http://localhost:8081/course/getCourseByUin/" +
+      Constants.backpath +
+        "/course/getCourseByUin/" +
         this.props.match.params.id
     )
       .then((response) => response.json())
@@ -41,7 +43,7 @@ class Course extends Component {
     var k = this;
     $.ajax({
       type: "get",
-      url: "http://localhost:3000/api/v1/session/checksession",
+      url: "../../api/v1/session/checksession",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -63,7 +65,7 @@ class Course extends Component {
     var k = this;
     $.ajax({
       type: "get",
-      url: "http://localhost:3000/api/v1/session/checksession",
+      url: "../../api/v1/session/checksession",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -83,7 +85,8 @@ class Course extends Component {
         $.ajax({
           type: "get",
           url:
-            "http://localhost:8081/checkIfEnrolled/" +
+            Constants.backpath +
+            "/checkIfEnrolled/" +
             k.props.match.params.id +
             "/" +
             uin,
@@ -119,7 +122,7 @@ class Course extends Component {
     var k = this;
     $.ajax({
       type: "get",
-      url: "http://localhost:3000/api/v1/session/checksession",
+      url: "../../api/v1/session/checksession",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -138,7 +141,7 @@ class Course extends Component {
       var id = k.props.match.params.id;
       $.ajax({
         type: "post",
-        url: "http://localhost:8081/joinCourse/" + id,
+        url: Constants.backpath + "/joinCourse/" + id,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -148,7 +151,7 @@ class Course extends Component {
         datatype: "application/json",
         success: function (e) {
           console.log(e);
-          window.location = "http://localhost:3000/course/index/" + id;
+          window.location = "../../course/index/" + id;
         },
       });
     });

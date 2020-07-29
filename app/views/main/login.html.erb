@@ -24,6 +24,7 @@
 <p id="sun">Dont have an account <a href="<%=sign_up_path%>">Sign Up Now</a></p> 
 </div>
 </div>
+
 <script>
 $('#login').submit(function(event){
 event.preventDefault();
@@ -33,7 +34,7 @@ kdata={
 };
 $.ajax({
   type: 'post',
-  url: 'http://localhost:8081/user/loginUser',
+  url: backpath+'/user/loginUser',
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
@@ -59,7 +60,7 @@ function sessionrailstore(e,email){
   };
 $.ajax({
   type: 'post',
-  url: 'http://localhost:3000/api/v1/session/login/'+e,
+  url: '../../api/v1/session/login/'+e,
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',
@@ -89,7 +90,7 @@ function onSignIn(googleUser) {
   signOut();
   $.ajax({
     type: 'post',
-    url: 'http://localhost:8081/user/checkIfFbOrGoogle',
+    url: backpath+'/user/checkIfFbOrGoogle',
     headers:{
   'Accept': 'application/json',
   'Content-Type':'application/json',
@@ -107,7 +108,7 @@ function onSignIn(googleUser) {
 window.alert('Email already exist with another login type');
       }
       else{
-        window.location="http://localhost:3000/main/oath_signup?oa=g&email="+profile.getEmail();
+        window.location="../../main/oath_signup?oa=g&email="+profile.getEmail();
       }
     },
     error: function(e){
@@ -149,7 +150,7 @@ window.alert('Email already exist with another login type');
 });
     $.ajax({
       type: 'post',
-      url: 'http://localhost:8081/user/checkIfFbOrGoogle',
+      url: backpath+'/user/checkIfFbOrGoogle',
       headers:{
     'Accept': 'application/json',
     'Content-Type':'application/json',
@@ -163,7 +164,7 @@ window.alert('Email already exist with another login type');
             sessionrailstore(e.uin,edata.id);
           }
         else{
-          window.location="http://localhost:3000/main/oath_signup?oa=f&email="+response.email;
+          window.location="../../main/oath_signup?oa=f&email="+response.email;
         }
       },
       error: function(e){

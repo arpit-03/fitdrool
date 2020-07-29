@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Videocard from "./Videocard";
+import Constants from "./Constants";
 class Videodisc extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,8 @@ class Videodisc extends Component {
     this.setState({ isLoading: true });
 
     fetch(
-      "http://localhost:8081/course/getCourseByUin/" +
+      Constants.backpath +
+        "/course/getCourseByUin/" +
         this.props.match.params.id
     )
       .then((response) => response.json())

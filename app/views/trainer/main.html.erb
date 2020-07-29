@@ -116,7 +116,7 @@ edata={
 
 $.ajax({
     type: 'post',
-    url: 'http://localhost:8081/course/saveCourseByUin/'+sessionStorage.getItem('tid'),
+    url: backpath+'/course/saveCourseByUin/'+sessionStorage.getItem('tid'),
     headers:{
   'Accept': 'application/json',
   'Content-Type':'application/json',
@@ -127,7 +127,7 @@ $.ajax({
     success: function(e){
       console.log(e);
     
-window.location="http://localhost:3000/trainer/cthmb/"+e.uin;
+window.location="../../trainer/cthmb/"+e.uin;
     }
 });
 });
@@ -137,7 +137,7 @@ window.location="http://localhost:3000/trainer/cthmb/"+e.uin;
 $(document).ready(function(){
   $.ajax({
     type: 'get',
-    url: 'http://localhost:8081/trainer/getByUin/'+sessionStorage.getItem('tid'),
+    url: backpath+'/trainer/getByUin/'+sessionStorage.getItem('tid'),
     headers:{
   'Accept': 'application/json',
   'Content-Type':'application/json',
@@ -188,7 +188,7 @@ if($('input[name=password]').val()!=""){
 }
 $.ajax({
   type: 'post',
-  url: 'http://localhost:8081/trainer/updateTrainer',
+  url: backpath+'/trainer/updateTrainer',
   headers:{
 'Accept': 'application/json',
 'Content-Type':'application/json',

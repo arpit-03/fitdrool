@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import Listcard from "./Listcard";
+import Constants from "./Constants";
 class Usercourse extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class Usercourse extends Component {
     var k = this;
     $.ajax({
       type: "get",
-      url: "http://localhost:3000/api/v1/session/checksession",
+      url: "../../api/v1/session/checksession",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -31,7 +32,7 @@ class Usercourse extends Component {
         }
       },
     }).done(function () {
-      fetch("http://localhost:8081/course/getCoursesByUserUin/" + uin)
+      fetch(Constants.backpath + "/course/getCoursesByUserUin/" + uin)
         .then((response) => response.json())
         .then((data) => k.setState({ lists: data, isLoading: false }));
     });
