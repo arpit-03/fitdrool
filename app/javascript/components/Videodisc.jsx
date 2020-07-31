@@ -90,8 +90,8 @@ class Videodisc extends Component {
               {videos.map((vid, index) => (
                 <Link
                   to={
-                    "../.." +
-                    "/index/" +
+                    "../../../" +
+                    "/video/index/" +
                     this.props.match.params.id +
                     "/" +
                     vid.uin

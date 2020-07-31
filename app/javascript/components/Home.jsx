@@ -28,10 +28,10 @@ class Home extends Component {
     return (
       <div className="ac">
         <div className="videogallery">
-          <Cardcarousel title={"Recent Videos"} swipelist={this.state.lists} />
+          <Cardcarousel title={"Recent Courses"} swipelist={this.state.lists} />
         </div>
         <div className="videogallery">
-          <Cardcarousel title={"Top Videos"} swipelist={this.state.lists2} />
+          <Cardcarousel title={"Top Courses"} swipelist={this.state.lists2} />
         </div>
       </div>
     );
