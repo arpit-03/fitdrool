@@ -14,11 +14,14 @@
     width: 200px;
   }
 }
-
+a {
+  cursor: pointer;
+}
 .vidpl2 {
   a {
     color: inherit !important;
     text-decoration: none !important;
+    cursor: pointer !important;
   }
   display: flex;
   .vidpl2desc {

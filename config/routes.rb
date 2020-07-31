@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   get 'trainer/index'
   get 'course/index/:id',to:'course#index', as: 'course'
-  get 'video/index/:id/:vidid' , to: 'video#index', as:'video'
+  get 'video/:id/:vidid' , to: 'video#index', as:'video'
   get 'users/info', as: 'info'
   get 'main/login' , as: 'login'
   get 'main/signup', as: 'sign_up'

@@ -16,6 +16,7 @@ class Course extends Component {
       ),
       course: [],
       videos: [],
+      vid0: [],
       isLoading: false,
     };
   }
@@ -33,6 +34,7 @@ class Course extends Component {
           listl: data,
           course: data.course,
           videos: data.course.videos,
+          vid0: data.course.videos[0],
           isLoading: false,
         })
       );
@@ -101,7 +103,14 @@ class Course extends Component {
             if (e) {
               k.setState({
                 btn: (
-                  <Link to={"../../video/index/" + k.props.match.params.id}>
+                  <Link
+                    to={
+                      "../../video/" +
+                      k.props.match.params.id +
+                      "/" +
+                      k.state.vid0.uin
+                    }
+                  >
                     <div id="enrplay">Play Now</div>
                   </Link>
                 ),
@@ -180,7 +189,7 @@ class Course extends Component {
                     key={vid.uin}
                     className="playlistcourse"
                     to={
-                      "../../video/index/" +
+                      "../../video/" +
                       this.props.match.params.id +
                       "/" +
                       vid.uin

@@ -37,6 +37,10 @@ class Videodisc extends Component {
         })
       );
   }
+  handleChange(e1, e) {
+    e1.preventDefault();
+    window.location = "../../video/" + this.props.match.params.id + "/" + e;
+  }
   render() {
     var videos = this.state.lists;
     console.log();
@@ -88,15 +92,9 @@ class Videodisc extends Component {
             <div className="viddiscplaylist">
               <h5>Playlist</h5>
               {videos.map((vid, index) => (
-                <Link
-                  to={
-                    "../../../" +
-                    "/video/index/" +
-                    this.props.match.params.id +
-                    "/" +
-                    vid.uin
-                  }
+                <a
                   key={vid.uin}
+                  onClick={(event) => this.handleChange(event, vid.uin)}
                 >
                   <div className="vidpl2">
                     <div>
@@ -107,7 +105,7 @@ class Videodisc extends Component {
                       <div className="vdt2">{vid.date}</div>
                     </div>
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

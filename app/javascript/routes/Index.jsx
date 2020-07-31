@@ -31,7 +31,7 @@ export default (
       <Route path="/zumba" exact component={Gym} />
       <Route path="/course/index/:id" component={Course} />
       <Route path="/course/confirm/:id" component={Courseconfirm} />
-      <Route path="/video/index/:id/:vidid" exact component={Videodisc} />
+      <Route path="/video/:id/:vidid" exact component={Videodisc} />
       <Route path="/search/index/:query" exact component={Search} />
       <Route path="/users/course" exact component={Usercourse} />
     </Switch>
