@@ -7,21 +7,23 @@
     <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="carousel-item active l1">
+
       <img src=<%=asset_path('a1.jpg')%> class="d-block w-100" alt="...">
+
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item l2">
       <img src=<%=asset_path('a2.jpg')%> class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item l3">
       <img src=<%=asset_path('a3.jpg')%> class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
@@ -40,3 +42,14 @@
 </div>
 </div>
 <div id="react-space"></div>
+<script>
+$('.l1').click(function(){
+window.location="../../course/index/331018"
+});
+$('.l3').click(function(){
+window.location="../../course/index/458675"
+});
+$('.l3').click(function(){
+window.location="../../course/index/312912"
+});
+</script>

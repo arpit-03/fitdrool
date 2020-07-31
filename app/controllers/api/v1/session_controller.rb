@@ -6,6 +6,7 @@ module Api
                 @id= params[:id]
                 session[:current_user_id]=@id
                 session[:current_user_email]=params[:email]
+                session[:current_user_name]=params[:name]
             end
             def checksession
             if(session[:current_user_id])

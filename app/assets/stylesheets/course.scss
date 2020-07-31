@@ -194,6 +194,31 @@
     margin: 0 !important;
   }
 }
+@media (max-width: 700px) {
+  .Courseconfirm {
+    width: inherit !important;
+    margin: 20px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .courseticket {
+    width: inherit !important;
+    height: inherit !important;
+    .cc1 {
+      flex-direction: column;
+    }
+    .cc1l {
+      width: 100% !important;
+      margin-bottom: 15px;
+      img {
+        width: 200px !important;
+      }
+    }
+    .cc1r {
+      width: 100% !important;
+    }
+  }
+}
 @media (max-width: 991.98px) {
   .courseheader {
     flex-direction: column-reverse;
