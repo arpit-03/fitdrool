@@ -7,6 +7,45 @@
     object-fit: cover;
   }
 }
+.contactus {
+  width: 60%;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 1px 1px 3px 1px grey;
+  margin: 20px;
+  h5 {
+    font-weight: bold;
+  }
+  .social1 {
+    font-size: 26px;
+    svg {
+      margin-left: 10px;
+    }
+  }
+}
+.adcontain {
+  display: flex;
+}
+.advert {
+  display: flex;
+  background-color: #075ca5;
+  width: 40%;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  justify-content: space-around;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+  img {
+    width: 160px;
+  }
+  .mat {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
 .videogallery {
   padding: 20px;
   margin: 10px;
@@ -57,6 +96,15 @@
   }
 }
 @media (max-width: 991.98px) {
+  .adcontain {
+    flex-direction: column;
+  }
+  .contactus {
+    width: 100% !important;
+  }
+  .advert {
+    width: 100% !important;
+  }
   .carousel {
     img {
       height: 45vh;

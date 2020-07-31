@@ -3,6 +3,8 @@ import Home from "./Home";
 import Footer from "./Footer";
 import About from "./About";
 import Category from "./Category";
+import Advert from "./Advert";
+import Contactus from "./Contactus";
 class Homemain extends Component {
   state = {};
 
@@ -10,8 +12,12 @@ class Homemain extends Component {
     return (
       <div>
         <Home />
-        <About />
 
+        <About />
+        <div className="adcontain">
+          <Advert />
+          <Contactus />
+        </div>
         <Footer />
       </div>
     );
