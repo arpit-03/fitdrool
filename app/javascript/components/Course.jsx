@@ -131,29 +131,11 @@ class Course extends Component {
       datatype: "application/json",
       success: function (e) {
         if (e.status) {
-          uin = e.uin;
+          window.location = "../../course/confirm/" + k.props.match.params.id;
         } else {
-          uin = false;
+          window.location = "../../main/login";
         }
       },
-    }).done(function () {
-      var edata = { uin: uin };
-      var id = k.props.match.params.id;
-      $.ajax({
-        type: "post",
-        url: Constants.backpath + "/joinCourse/" + id,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          headerKey: "98f88a00-152a-4627-8157-3814c754c035",
-        },
-        data: JSON.stringify(edata),
-        datatype: "application/json",
-        success: function (e) {
-          console.log(e);
-          window.location = "../../course/index/" + id;
-        },
-      });
     });
   }
   render() {
@@ -193,14 +175,27 @@ class Course extends Component {
                   </div>
                 </div>
 
-                {videos.map((vid) => (
-                  <div className="vidplaylist" key={vid.uin}>
-                    <div className="titleplay">
-                      <i className="fas fa-play"></i>
-                      <p className="vidplaylisttitle">Video 1: {vid.title}</p>
+                {videos.map((vid, index) => (
+                  <Link
+                    key={vid.uin}
+                    className="playlistcourse"
+                    to={
+                      "../../video/index/" +
+                      this.props.match.params.id +
+                      "/" +
+                      vid.uin
+                    }
+                  >
+                    <div className="vidplaylist">
+                      <div className="titleplay">
+                        <i className="fas fa-play"></i>
+                        <p className="vidplaylisttitle">
+                          Video {index + 1}: {vid.title}
+                        </p>
+                      </div>
+                      <p>00:00</p>
                     </div>
-                    <p>00:00</p>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

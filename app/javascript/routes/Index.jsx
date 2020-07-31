@@ -12,6 +12,7 @@ import Course from "../components/Course";
 import ScrollToTop from "../components/ScrollToTop";
 import Search from "../components/Search";
 import Usercourse from "../components/Usercourse";
+import Courseconfirm from "../components/Courseconfirm";
 
 export default (
   <Router>
@@ -29,7 +30,8 @@ export default (
       <Route path="/dance" exact component={Yoga} />
       <Route path="/zumba" exact component={Gym} />
       <Route path="/course/index/:id" component={Course} />
-      <Route path="/video/index/:id" exact component={Videodisc} />
+      <Route path="/course/confirm/:id" component={Courseconfirm} />
+      <Route path="/video/index/:id/:vidid" exact component={Videodisc} />
       <Route path="/search/index/:query" exact component={Search} />
       <Route path="/users/course" exact component={Usercourse} />
     </Switch>

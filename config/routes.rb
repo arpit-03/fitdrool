@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   get 'trainer/index'
   get 'course/index/:id',to:'course#index', as: 'course'
-  get 'video/index/:id' , to: 'video#index', as:'video'
+  get 'video/index/:id/:vidid' , to: 'video#index', as:'video'
   get 'users/info', as: 'info'
   get 'main/login' , as: 'login'
   get 'main/signup', as: 'sign_up'
@@ -25,7 +25,7 @@ get 'users/course', to: 'users#course', as: 'usercourse'
   get 'trainer/main', as: 'tmain'
   get 'main/oath_signup',to:"main#oath_signup", as:'oasignup'
   get 'yoga',to:"workout#yoga", as: 'yoga'
-  
+  get 'course/confirm/:id', to: "course#confirm", as: 'courseconfirm'
   get 'mind',to:"workout#mind", as: 'mind'
   get 'home workout',to:"workout#homeworkout", as: 'home_workout'
   get 'gym workout',to:"workout#gymworkout", as: 'gym_workout'
