@@ -85,7 +85,7 @@ $.ajax({
   
 });
 $('.setupcontainer').remove();
-$('.setupsub').append("<div class='setupcontainer'><form id='otpform'><div class='form-group'><input type='number' name='otp' placeholder='Enter OTP sent on Email' class='form-control' aria-describedby='emailHelp'</div><button id='otpsubmit' type='submit' class='btn btnlogin'>Submit</button></form></div>");
+$('.setupsub').append("<div class='setupcontainer'><form id='otpform'><div class='form-group'><input type='number' name='otp' placeholder='Enter OTP sent on Email' class='form-control' aria-describedby='emailHelp'</div><p>In development mode : use 1234 as OTP</p><button id='otpsubmit' type='submit' class='btn btnlogin'>Submit</button></form></div>");
 $('#otpform').submit(function(event){
 event.preventDefault();
 $.ajax({

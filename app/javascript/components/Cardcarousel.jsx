@@ -30,17 +30,24 @@ class Cardcarousel extends Component {
     e1.preventDefault();
     window.location = "../../course/index/" + e;
   }
+  handleCarousel(){
+  $('.owl').flickity({
+
+  cellAlign: 'left',
+  contain: true,
+  draggable: true,
+  groupCells: 2,
+  pageDots: false,
+  freeScroll: true,
+});
+  }
   render() {
     return (
       <div>
         <h5 className="headslide">{this.props.title}</h5>
         <div className="line"></div>
-        <Carousel
-          className="line2"
-          responsive={responsive}
-          swipeable={true}
-          centerMode={true}
-        >
+        <div>
+       <div className="owl" onLoad={this.handleCarousel}>
           {this.props.swipelist.map((list1, index) => (
             <div key={index} className="cccarousel">
               <a onClick={(e) => this.handleClick(list1.course.uin, e)}>
@@ -52,7 +59,8 @@ class Cardcarousel extends Component {
               </a>
             </div>
           ))}
-        </Carousel>
+        </div>
+        </div>
       </div>
     );
   }

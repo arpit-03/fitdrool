@@ -20,7 +20,8 @@ class Homemain extends Component {
 
 </div>
 </div>
-        <About />
+        
+<About />
         <div className="adcontain">
           <Advert />
           <Contactus />
