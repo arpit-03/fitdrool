@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import Listcard from "./Listcard";
 import Constants from "./Constants";
+import Loading from "./Loading";
 class Usercourse extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,7 @@ class Usercourse extends Component {
   }
 
   render() {
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div>

@@ -1,4 +1,4 @@
 export default {
-  backpath: "http://localhost:8081",
+  backpath: "http://192.168.1.6:8081",
   videopath: "http://localhost:8082",
 };

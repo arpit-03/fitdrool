@@ -91,3 +91,9 @@ body {
 body {
   overflow-x: hidden;
 }
+.loading {
+  display: flex;
+  height: 85vh;
+  justify-content: center;
+  align-items: center;
+}

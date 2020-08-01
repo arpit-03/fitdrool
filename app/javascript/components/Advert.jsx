@@ -10,7 +10,7 @@ class Advert extends Component {
         <div className="mat">
           <p>Stop Thinking</p>
           <p>Start Your Fitness Journey</p>
-          <p>Join Us Today</p>
+          <p>Join Us Today !</p>
         </div>
       </div>
     );

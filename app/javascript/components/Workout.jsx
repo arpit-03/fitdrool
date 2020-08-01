@@ -4,6 +4,7 @@ import Listcard from "./Listcard";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import Constants from "./Constants";
+import Loading from "./Loading";
 class Workout extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,7 @@ class Workout extends Component {
       .then((data) => this.setState({ lists: data, isLoading: false }));
   }
   render() {
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import Constants from "./Constants";
+import Loading from "./Loading";
 class Course extends Component {
   constructor(props) {
     super(props);
@@ -151,7 +152,7 @@ class Course extends Component {
     var listl = this.state.listl;
     var course = this.state.course;
     var videos = this.state.videos;
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div>

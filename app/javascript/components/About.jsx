@@ -3,7 +3,7 @@ class About extends Component {
   state = {};
   render() {
     return (
-      <div className="aboutcontainer ac">
+      <div className="aboutcontainer ac" id="about">
         <div className="aboutdiv">
           <h5 className="abouthead">What are we ?</h5>
           <p className="aboutpara">

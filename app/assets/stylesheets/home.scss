@@ -6,6 +6,27 @@
     height: 80vh;
     object-fit: cover;
   }
+
+}
+.quotemain{
+   background-image: url("https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.quote{
+ 
+      display: flex;
+    height: 50vh;
+   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    font-family: monospace;
+    background-color: #2525254f;
+
 }
 .contactus {
   width: 60%;
@@ -95,15 +116,16 @@
     width: 200px !important;
   }
 }
+
 @media (max-width: 991.98px) {
   .adcontain {
     flex-direction: column;
   }
   .contactus {
-    width: 100% !important;
+    width: inherit !important;
   }
   .advert {
-    width: 100% !important;
+    width: inherit !important;
   }
   .carousel {
     img {

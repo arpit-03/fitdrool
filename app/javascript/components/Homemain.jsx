@@ -12,7 +12,14 @@ class Homemain extends Component {
     return (
       <div>
         <Home />
+        <div className="quotemain">
+<div className="quote">
 
+<p>When you feel like quitting</p>
+<p>Think why you started.</p>
+
+</div>
+</div>
         <About />
         <div className="adcontain">
           <Advert />

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 class Footer extends Component {
   state = {};
   render() {
     return (
       <div className="footer">
         <div className="footsection">
-          <a className="sections">About</a>
+          <a className="sections">
+            <Link to={"../..#about"}>About</Link>
+          </a>
           <a className="sections">Contact us</a>
           <a className="sections">Terms and Conditions</a>
         </div>

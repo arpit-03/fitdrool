@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Videocard from "./Videocard";
 import Constants from "./Constants";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 class Videodisc extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +46,7 @@ class Videodisc extends Component {
     var videos = this.state.lists;
     console.log();
     console.log(this.state.videos);
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div className="videodisc">

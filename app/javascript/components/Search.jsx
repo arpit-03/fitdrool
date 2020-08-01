@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Listcard from "./Listcard";
 import Constants from "./Constants";
+import Loading from "./Loading";
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class Search extends Component {
       .then((data) => this.setState({ lists: data, isLoading: false }));
   }
   render() {
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div className="searchcards">

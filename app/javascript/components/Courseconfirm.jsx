@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Constants from "./Constants";
 import Footer from "./Footer";
+import Loading from "./Loading";
 class Courseconfirm extends Component {
   constructor(props) {
     super(props);
@@ -75,7 +76,7 @@ class Courseconfirm extends Component {
   render() {
     var list = this.state.list;
     var course = this.state.course;
-    if (this.state.isLoading) return <h2>Loading</h2>;
+    if (this.state.isLoading) return <Loading />;
     else
       return (
         <div>
