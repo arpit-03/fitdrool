@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Cardobj";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import "./rrm.css";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -30,24 +30,25 @@ class Cardcarousel extends Component {
     e1.preventDefault();
     window.location = "../../course/index/" + e;
   }
-  handleCarousel(){
-  $('.owl').flickity({
-
-  cellAlign: 'left',
-  contain: true,
-  draggable: true,
-  groupCells: 2,
-  pageDots: false,
-  freeScroll: true,
-});
+  handleCarousel() {
+    $(".owl").flickity({
+      cellAlign: "left",
+      contain: true,
+      draggable: true,
+      groupCells: 2,
+      pageDots: false,
+      freeScroll: true,
+    });
   }
   render() {
     return (
       <div>
-        <h5 className="headslide">{this.props.title}</h5>
-        <div className="line"></div>
-        <div>
-       <div className="owl" onLoad={this.handleCarousel}>
+        <Carousel
+          className="line2"
+          responsive={responsive}
+          swipeable={true}
+          centerMode={true}
+        >
           {this.props.swipelist.map((list1, index) => (
             <div key={index} className="cccarousel">
               <a onClick={(e) => this.handleClick(list1.course.uin, e)}>
@@ -59,8 +60,7 @@ class Cardcarousel extends Component {
               </a>
             </div>
           ))}
-        </div>
-        </div>
+        </Carousel>
       </div>
     );
   }
