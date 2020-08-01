@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Cardobj";
 import Carousel from "react-multi-carousel";
-import "./rrm.css";
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
