@@ -112,8 +112,26 @@ alert("Error occured");
 <script>
 function sessionrailstore(e,email){
   var em={
-    'email':email
+    'email':email,
+    'name': null,
   };
+  $.ajax({
+    type: 'get',
+    url: backpath+'/user/getByUin/'+e,
+    headers:{
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  'headerKey': '98f88a00-152a-4627-8157-3814c754c035',
+    },
+    
+    datatype:'application/json',
+    success: function(e1){
+em.name=e1.firstName;
+    },
+    error: function(){
+alert("Not able to get user");
+    },
+  }).done(function(){
 $.ajax({
   type: 'post',
   url: '../../api/v1/session/login/'+e,
@@ -127,6 +145,10 @@ $.ajax({
   success: function(e1){
   window.location="../..";
   },
-});
+  error: function(e){
+    console.log(e);
+    alert("Rails session creation error");
+      },
+});});
 }
 </script>
