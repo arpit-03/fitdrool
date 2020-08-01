@@ -7,7 +7,7 @@ class Footer extends Component {
       <div className="footer">
         <div className="footsection">
           <a className="sections">
-            <Link to={"../..#about"}>About</Link>
+            About
           </a>
           <a className="sections">Contact us</a>
           <a className="sections">Terms and Conditions</a>
