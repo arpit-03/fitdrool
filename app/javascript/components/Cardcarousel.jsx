@@ -8,16 +8,19 @@ const responsive = {
     breakpoint: { max: 3000, min: 1024 },
     items: 4,
     slidesToSlide: 3, // optional, default to 1.
+    partialVisibilityGutter: 20,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3,
+    items: 2,
     slidesToSlide: 2, // optional, default to 1.
+    partialVisibilityGutter: 20,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
     slidesToSlide: 1, // optional, default to 1.
+    partialVisibilityGutter: 20,
   },
 };
 
@@ -30,24 +33,17 @@ class Cardcarousel extends Component {
     e1.preventDefault();
     window.location = "../../course/index/" + e;
   }
-  handleCarousel() {
-    $(".owl").flickity({
-      cellAlign: "left",
-      contain: true,
-      draggable: true,
-      groupCells: 2,
-      pageDots: false,
-      freeScroll: true,
-    });
-  }
+
   render() {
     return (
       <div>
+        <h5 className="headslide">{this.props.title}</h5>
+        <div className="line"></div>
         <Carousel
           className="line2"
           responsive={responsive}
           swipeable={true}
-          centerMode={true}
+          partialVisible={true}
         >
           {this.props.swipelist.map((list1, index) => (
             <div key={index} className="cccarousel">
