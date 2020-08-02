@@ -71,12 +71,16 @@ body {
   justify-content: center;
   font-size: 26px;
 }
-.socail a {
-  color: inherit;
-  text-decoration: none;
+.social a {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 .social svg {
   margin-right: 10px;
+}
+.fff a {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 @media (max-width: 991.98px) {
