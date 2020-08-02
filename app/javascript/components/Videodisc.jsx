@@ -58,7 +58,7 @@ class Videodisc extends Component {
             controlsList="nodownload"
             disablePictureInPicture
             controls
-            autoplay
+            autoPlay
           />
           <div className="vidpl">
             <div className="viddiscmain">

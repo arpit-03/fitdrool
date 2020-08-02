@@ -17,7 +17,7 @@
 </div>
 <div class="form-group">
 
-<input type="password" placeholder="Password" class="form-control">
+<input style="display:none" type="password" placeholder="Password" class="form-control">
 </div>
 <div class="form-group">
 
@@ -26,20 +26,20 @@
 
 <div class="form-group">
 
-<input type="text" placeholder="Date of Birth" name="dob" id="dob" class="form-control"  aria-describedby="emailHelp">
+<input type="text" placeholder="Date of Birth" name="dob" id="dob1" class="form-control"  aria-describedby="emailHelp">
 </div>
 
 <h5>Gender:</h5>
 <div class="custom-control custom-radio">
-  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="male">
   <label class="custom-control-label" for="customRadio1">Male</label>
 </div>
 <div class="custom-control custom-radio">
-  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="female">
   <label class="custom-control-label" for="customRadio2">Female</label>
 </div>
 <div class="custom-control custom-radio">
-  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="others">
   <label class="custom-control-label" for="customRadio3">Others</label>
 </div>
 
@@ -50,7 +50,7 @@
 </div>
 
 <script>
-$('#dob').datepicker();
+$('#dob1').datepicker();
 </script>
 <script>
 var curent_id;
@@ -74,7 +74,7 @@ $('input[name=email]').val(e.id);
   $('input[name=phoneno]').val(e.phoneNumber);
 
  $('input[name=dob]').val(e.dob);
-
+$('input[name=customRadio][value='+e.gender.toLowerCase()+']').prop('checked',true);
     }
 }).done( reload('userdetail'));
 });

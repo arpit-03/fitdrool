@@ -25,6 +25,15 @@ class Search extends Component {
   }
   render() {
     if (this.state.isLoading) return <Loading />;
+    else if (this.state.lists.length == 0)
+      return (
+        <div className="usernocourse">
+          <div className="usernocover">
+            <p>The search got no results</p>
+            <p>Try searching other courses</p>
+          </div>
+        </div>
+      );
     else
       return (
         <div className="searchcards">
