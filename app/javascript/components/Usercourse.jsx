@@ -41,6 +41,20 @@ class Usercourse extends Component {
 
   render() {
     if (this.state.isLoading) return <Loading />;
+    else if (this.state.lists.length == 0)
+      return (
+        <div className="usernocourse">
+          <div className="usernocover">
+            <p>It feels lonely in here</p>
+            <p>Enroll yourself and start your fitness journey</p>
+            <div className="ennowdiv">
+              <a onClick={() => (window.location = "../..")}>
+                <div className="ennow">Enroll Now</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      );
     else
       return (
         <div>

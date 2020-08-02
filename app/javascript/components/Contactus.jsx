@@ -8,7 +8,7 @@ class Contactus extends Component {
           <h5>Join The Fitness Revolution</h5>
         </div>
         <p>Contact Us</p>
-        <p>arpitdeveloper03@gmail.com</p>
+        <p>Fitdrool@gmail.com</p>
         <p>7683056351</p>
         <div className="social1">
           <i className="fab fa-facebook-square"></i>

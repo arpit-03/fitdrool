@@ -2,7 +2,7 @@
 <div class="setupsub editsub">
 <div class="setupcontainer" id="userdetail">
 <h5 id="sgnuptop">Account Details</h5>
-<form>
+<form id="infoform">
 <div class="form-group">
 
 <input type="text" placeholder="First Name" name="firstname" class="form-control" aria-describedby="emailHelp" >
@@ -43,7 +43,7 @@
   <label class="custom-control-label" for="customRadio3">Others</label>
 </div>
 
-<button type="submit" class="btn btnlogin">Update</button>
+<button type="submit" class="btn btnlogin" id="updatebtn">Update</button>
 </form>
 </div>
 </div>
@@ -53,10 +53,11 @@
 $('#dob').datepicker();
 </script>
 <script>
+var curent_id;
 $(document).ready(function(){
   $.ajax({
     type: 'get',
-    url: backpath+'/user/getByUin/'+sessionStorage.getItem('id'),
+    url: backpath+'/user/getByUin/'+<%=session[:current_user_id]%>,
     headers:{
   'Accept': 'application/json',
   'Content-Type':'application/json',
@@ -66,21 +67,61 @@ $(document).ready(function(){
     datatype:'application/json',
     success: function(e){
       console.log(e);
+      curent_id=e.uin;
       $('input[name=firstname]').val(e.firstName);
  $('input[name=lastname]').val(e.lastName);
 $('input[name=email]').val(e.id);
   $('input[name=phoneno]').val(e.phoneNumber);
 
- $('input[name=dob]').val(e.DOB);
+ $('input[name=dob]').val(e.dob);
 
     }
-}).done( reload('userdetail'));});
+}).done( reload('userdetail'));
+});
 </script>
 <script>
 function reload(g){
     var container = document.getElementById(g);
     var content = container.innerHTML;
     container.innerHTML= content; 
-    console.log("Refreshed"); 
+    console.log("<%=session[:current_user_id]%>"); 
+    updation();
+}
+</script>
+<script>
+function updation(){
+$('#infoform').submit(function(event){
+event.preventDefault();
+
+var edata={
+  'firstName':$('input[name=firstname]').val(),
+  'lastName':$('input[name=lastname]').val(),
+   'phoneNumber':$('input[name=phoneno]').val(),
+   'uin':curent_id,
+  'dob':$('input[name=dob]').val(),
+  'gender':$('input[name=customRadio]:checked').val(),
+};
+if($('input[name=password]').val()!=""){
+  edata.password=$('input[name=password]').val();
+}
+
+$.ajax({
+  type: 'POST',
+  url: backpath+'/user/updateUserByUin',
+  headers:{
+'Accept': 'application/json',
+'Content-Type':'application/json',
+  },
+  data: JSON.stringify(edata),
+  datatype:'json',
+  success: function(e){
+  location.reload();
+   
+  },
+  
+});
+
+});
+
 }
 </script>
